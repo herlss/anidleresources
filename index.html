@@ -167,6 +167,8 @@
                 return;
             } else if (page == 2) {
                 prev.classList.add('disabled');
+            } else if (page == 50) {
+                next.classList.remove('disabled');
             }
             
             page--;
@@ -187,7 +189,7 @@
             wrapper.innerHTML = '';
             curr_page.textContent = page;
 
-            window.scrollTo(0,0)
+            // window.scrollTo(0,0)
             
             images.forEach(img => {
                 wrapper.insertAdjacentHTML('beforeend', `
@@ -206,6 +208,7 @@
             data = await getData();
 
             prev.classList.add('disabled');
+            next.classList.remove('disabled');
             page = 1;
 
             buildImages(page);
