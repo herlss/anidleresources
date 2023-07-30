@@ -1,7 +1,5 @@
 # Welcome to AnidleResources - Your Source for Anime and Manga Covers
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-
 ## Introduction
 
 AnidleResources is a repository of high-quality image resources for anime and manga covers. Whether you're an anime enthusiast, a manga lover, or a developer working on an anime-themed project, this repository is here to cater to your needs. You are free to access and utilize these resources as much as you want for various purposes, including personal and commercial projects.
@@ -14,7 +12,7 @@ To access AnidleResources, all you need is your web browser and the following UR
 
 ## How to Use
 
-Using AniDleResources is simple and straightforward. Follow these steps to get started:
+Using AnidleResources is simple and straightforward. Follow these steps to get started:
 
 1. Open your web browser and navigate to the URL mentioned above.
 
@@ -35,7 +33,7 @@ Using AniDleResources is simple and straightforward. Follow these steps to get s
 
 AnidleResources is designed to be a free and open resource for all anime and manga enthusiasts and developers. You are free to access and use the images available in this repository for any purpose, including personal projects, websites, apps, artwork, and more.
 
-However, it's essential to note that while the images themselves are free to use, they might be subject to copyright restrictions. AniDleResources does not claim ownership of the images hosted here, and it is your responsibility to ensure that your usage complies with the relevant copyright laws. If you are unsure about the usage rights of a specific image, we recommend reaching out to the original creators or copyright holders for clarification.
+However, it's essential to note that while the images themselves are free to use, they might be subject to copyright restrictions. AnidleResources does not claim ownership of the images hosted here, and it is your responsibility to ensure that your usage complies with the relevant copyright laws. If you are unsure about the usage rights of a specific image, we recommend reaching out to the original creators or copyright holders for clarification.
 
 ## Contribution
 
