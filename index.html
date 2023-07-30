@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnidleResources</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" integrity="sha512-ZnR2wlLbSbr8/c9AgLg3jQPAattCUImNsae6NHYnS9KrIwRdcY9DxFotXhNAKIKbAXlRnujIqUWoXXwqyFOeIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="https://i.redd.it/p9rw7dzp78451.png" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #171717;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .category-switch {
+            list-style-type: none;
+            height: 50px; width: 100px;
+            margin: 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .category {
+            height: 40px; width: 40px;
+            background-color: darkslategray;
+            color: white;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .2s ease-in-out;
+            cursor: pointer;
+        }
+
+        .category:hover {
+            box-shadow: 0 0 2px white;
+            transform: scale(1.05);
+        }
+
+        .images-wrapper {
+            margin: 20px;
+            height: fit-content; width: fit-content;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            column-gap: 20px; row-gap: 20px;
+            grid-template-columns: repeat(5, auto);
+        }
+
+        .image {
+            height: 250px; width: 175px;
+            border-radius: 10px;
+            transition: .2s ease-in-out;
+            cursor: pointer;
+        }
+
+        .image:hover {
+            transform: scale(1.05);
+            opacity: .8;
+        }
+        
+        .current-page {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <ul class="category-switch">
+        <li class="category" title="Anime"><i class="bi bi-tv-fill" title="Anime"></i></li>
+        <li class="category" title="Manga"><i class="bi bi-book-fill" title="Manga"></i></li>
+    </ul>
+    <div class="images-wrapper"></div>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item prev disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item next">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <p class="current-page">Page <span class="page">1</span></p>
+    <script>
+        // Control variables
+        var data;
+        var page = 1;
+        var category = 'anime';
+
+        // DOM initializers
+        const wrapper = document.querySelector('.images-wrapper');
+        const next = document.querySelector('.next');
+        const prev = document.querySelector('.prev');
+        const curr_page = document.querySelector('.page');
+        const categories = document.querySelectorAll('.category');
+
+        window.addEventListener('load', async () => {
+            data = await getData('anime');
+
+            buildImages(1);
+        });
+
+        categories.forEach(c => {
+            c.addEventListener('click', (e) => {
+                let category = e.target.title.toLowerCase();
+
+                switchCategory(category);
+            });
+        });
+
+        next.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            if (next.classList.contains('disabled')) {
+                return;
+            } else if (page == 49) {
+                next.classList.add('disabled');
+            } else if (page == 1) {
+                prev.classList.remove('disabled');
+            }
+
+            page++;
+            buildImages(page);
+        });
+
+        prev.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            if (prev.classList.contains('disabled')) {
+                return;
+            } else if (page == 2) {
+                prev.classList.add('disabled');
+            }
+            
+            page--;
+            buildImages(page);
+        });
+
+        async function getData() {
+            const req = await fetch(`./${category}.json`);
+            const data = await req.json();
+
+            return data;
+        }
+
+        function buildImages(page) {
+            const perpage = 20;
+            const images = data.slice((page-1)*perpage, page * perpage);
+
+            wrapper.innerHTML = '';
+            curr_page.textContent = page;
+
+            window.scrollTo(0,0)
+            
+            images.forEach(img => {
+                wrapper.insertAdjacentHTML('beforeend', `
+                    <img class='image' src="https://herlss.github.io/anidleresources/${category}/${img}" title='Click to copy link' onclick='copyLink(this)'>
+                `)
+            });
+        }
+
+        async function copyLink(img) {
+            const src = img.src;
+            await navigator.clipboard.writeText(src);
+        }
+
+        async function switchCategory(c) {
+            category = c;
+            data = await getData();
+            page = 1;
+
+            buildImages(page);
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
