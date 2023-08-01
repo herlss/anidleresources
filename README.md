@@ -10,6 +10,8 @@ To access AnidleResources, all you need is your web browser and the following UR
 
 [https://herlss.github.io/anidleresources/](https://herlss.github.io/anidleresources/)
 
+You can click the image to copy its link or just follow the next few steps.
+
 ## How to Use
 
 Using AnidleResources is simple and straightforward. Follow these steps to get started:
