@@ -22,6 +22,7 @@ Using AnidleResources is simple and straightforward. Follow these steps to get s
 
    - For manga covers: [https://herlss.github.io/anidleresources/manga](https://herlss.github.io/anidleresources/manga)
    - For anime covers: [https://herlss.github.io/anidleresources/anime](https://herlss.github.io/anidleresources/anime)
+   - For characters: [https://herlss.github.io/anidleresources/characters](https://herlss.github.io/anidleresources/characters)
 
 3. Once you've selected the type of resource, browse through the collection to find the specific cover you want.
 
